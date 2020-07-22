@@ -1,4 +1,4 @@
-#FIFO - First in First Out
+# FIFO - First in First Out
 
 class Queue:
     def __init__(self):
@@ -6,8 +6,8 @@ class Queue:
 
     def isEmpty(self):
         return self.queue == []
-    
-    def enqueue(self,data):
+
+    def enqueue(self, data):
         self.queue.append(data)
 
     def dequeue(self):
