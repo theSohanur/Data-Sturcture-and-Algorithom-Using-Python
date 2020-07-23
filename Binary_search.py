@@ -7,6 +7,7 @@ class Node(object):
 
 class BinarySearchTree(object):
     def __init__(self):
+        self.leftChild = None
         self.root = None
 
     def insert(self, data):
@@ -21,6 +22,42 @@ class BinarySearchTree(object):
                 self.insertNode(data, node.leftChild)
             else:
                 node.rightChild = Node(data)
+
+    def removeNode(self, data, node):
+        if not node:
+            return node
+        if data < node.data:
+            node.leftChild = self.removeNode(data, node.leftChild)
+        elif data > node.data:
+            node.rightChild = self.removeNode(data, node.rightChild)
+        else:
+            if not node.leftChild and not node.rightChild:
+                print('Removing a leaf node ...')
+                del node
+                return None
+            if not node.leftChild:
+                print('Removing a node with single right child ...')
+                tempNode = node.rightChild
+                del node
+                return tempNode
+            elif not node.rightChild:
+                print('Removing a node with single left child...')
+                tempNode = node.leftChild
+                del node
+                return tempNode
+            print('Removing node with two children...')
+            tempNode = self.getPredeccor(node.leftChild)
+            node.data = tempNode.data
+            node.leftChild = self.removeNode(tempNode.data, node.leftChild)
+
+    def getPredeccor(self, node):
+        if node.rightChild:
+            return self.getPredeccor(node.rightChild)
+        return node
+
+    def remove(self, data):
+        if self.root:
+            self.root = self.removeNode(data, self.root)
 
     def getMinValue(self):
         if self.root:
@@ -38,3 +75,25 @@ class BinarySearchTree(object):
     def getMax(self, node):
         if node.rightChild:
             return self.getMax(node.rightChild)
+
+    def traverse(self):
+        if self.root:
+            self.traverseInOrder(self.root)
+
+    def traverseInOrder(self, node):
+        if node.leftChild:
+            self.traverseInOrder(node.leftChild)
+        print(node.data)
+        if node.rightChild:
+            self.traverseInOrder(node.rightChild)
+
+
+bst = BinarySearchTree()
+bst.insert(13)
+bst.insert(34)
+bst.insert(5)
+bst.insert(45)
+
+# print(bst.getMinValue())
+
+bst.traverse()
