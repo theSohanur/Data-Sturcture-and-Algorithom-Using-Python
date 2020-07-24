@@ -58,8 +58,8 @@ class LinkedList:
                 position += 1
                 start = start.getNextNode()
 
-
     # method removes item passed from the Linked List
+
     def remove(self, item):
         start = self.head
         previous = None
@@ -122,8 +122,8 @@ class LinkedList:
             del start
             return data
 
-
     # method returns the element at given position
+
     def atIndex(self, position):
         start = self.head
         position = int(position)
@@ -253,7 +253,6 @@ class LinkedList:
         return tempList
 
 
-
 # node class
 class Node:
     # default value of data and link is none if no data is passed
@@ -289,7 +288,6 @@ myList.addToStart(4)
 myList.addToStart(3)
 myList.addToStart(2)
 myList.addToStart(1)
-myList.addToEnd(77)
 
 
 myList.display()
